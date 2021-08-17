@@ -52,8 +52,8 @@ fgv.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').
     ))
 
 # add feature group to the map
-map.add_child(fgp)
 map.add_child(fgv)
+map.add_child(fgp)
 # add layer control to map to allow selection of layers
 # must be added after feature group is added to map
 map.add_child(folium.LayerControl())
