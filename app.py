@@ -31,7 +31,7 @@ map = folium.Map(location=[39.9299, -104.8962], zoom_start=5, tiles = "Stamen Te
 # helps when adding layer control feature to map
 fg = folium.FeatureGroup(name="My Map")
 # add elements to feature group object, such as markers
-# easily loop through coordinates to add multiple markers
+# loop through coordinates, elevation and name to add markers
 for lt, ln, el, name in zip(lat, lon, elev, name):
     iframe = folium.IFrame(html=html % (name, name, el), width=200, height=100)
     fg.add_child(folium.CircleMarker(
@@ -43,6 +43,9 @@ for lt, ln, el, name in zip(lat, lon, elev, name):
         color=color_producer(el)
         ))
 
+
+# import geojson data to add population map layer
+fg.add_child(folium.GeoJson(data=(open('world.json', 'r', encoding='utf-8-sig').read())))
 
 map.add_child(fg)
 # generate map html file based on Map method inputs
